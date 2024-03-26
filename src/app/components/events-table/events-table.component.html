@@ -1,0 +1,33 @@
+<ng-container *ngIf="items$ | async as items">
+  <table mat-table [dataSource]="items">
+    <ng-container matColumnDef="timestamp">
+      <th mat-header-cell *matHeaderCellDef>Time (UTC)</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.timestamp | date : 'YYYY-MM-dd HH:mm:ss' : 'GMT' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="level">
+      <th mat-header-cell *matHeaderCellDef>Level</th>
+      <td mat-cell *matCellDef="let element">
+        <span class="material-icons" [class]="element.level | lowercase">
+          {{ element.level | lowercase }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="message">
+      <th mat-header-cell *matHeaderCellDef>Message</th>
+      <td mat-cell *matCellDef="let element">{{ element.message }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      [class.highlighted-row]="row.timestamp === (hoveredItem$ | async)"
+      (mouseenter)="onMouseOverTableItem(row.timestamp)"
+      (mouseleave)="onMouseOverTableItem()"
+    ></tr>
+  </table>
+</ng-container>

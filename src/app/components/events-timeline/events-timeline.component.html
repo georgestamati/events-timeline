@@ -1,0 +1,36 @@
+<div class="timeline-container" #container (wheel)="onMouseWheel($event)">
+  <div class="timeline-interval">
+    <div>{{ startTime | date : 'YYYY-MM-dd HH:mm:ss' }}</div>
+    <div>{{ endTime | date : 'YYYY-MM-dd HH:mm:ss' }}</div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-bars">
+      <div
+        class="timeline-start-bar"
+        cdkDrag
+        cdkDragLockAxis="x"
+        [cdkDragBoundary]="container"
+        (cdkDragEnded)="onDragEnd('start', $event)"
+      ></div>
+      <div
+        class="timeline-end-bar"
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="container"
+        (cdkDragEnded)="onDragEnd('end', $event)"
+      ></div>
+    </div>
+    <div class="timeline-items">
+      <div
+        class="timeline-item"
+        *ngFor="let item of items; let i = index"
+        [style.left]="calculateItemPosition(item)"
+        [class]="item.level | lowercase"
+        [matTooltip]="(hoveredRow$ | async) === item.timestamp ? (item.timestamp | date : 'YYYY-MM-dd HH:mm:ss') : null"
+        (mouseenter)="onMouseOverTimelineItem(item.timestamp)"
+        (mouseleave)="onMouseOverTimelineItem()"
+      ></div>
+      <div class="timeline-bar"></div>
+    </div>
+  </div>
+</div>

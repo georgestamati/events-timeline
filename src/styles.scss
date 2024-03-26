@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.info{
+    color: blue;
+}
+.warning{
+    color: orange
+}
+.error{
+    color: red
+}
+
+.timeline-item{
+    &.info{
+        background-color: blue;
+    }
+    &.warning{
+        background-color: orange
+    }
+    &.error{
+        background-color: red
+    }
+}

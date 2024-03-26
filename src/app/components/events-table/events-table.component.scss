@@ -1,0 +1,19 @@
+.material-icons{
+    &.info{
+        color: blue;
+    }
+    &.warning{
+        color: orange
+    }
+    &.error{
+        color: red
+    }
+}
+
+.highlighted-row{
+    background-color: #ccc;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+    background-color: #c0c0c0;
+}

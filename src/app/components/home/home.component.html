@@ -1,0 +1,11 @@
+<div class="container">
+  <!-- [items]="items" -->
+  <app-events-timeline
+    [startTime]="startTime"
+    [endTime]="endTime"
+    (timelineIntervalChange)="onTimelineIntervalChange($event)"
+  >
+  </app-events-timeline>
+
+  <app-events-table [items$]="timelineItemsForTable$"></app-events-table>
+</div>
